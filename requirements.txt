@@ -1,0 +1,15 @@
+channels==4.0.0
+channels-redis==4.1.0
+daphne==4.0.0
+Django==4.2.2
+django-cors-headers==4.1.0
+django-environ==0.10.0
+django-query-counter==0.2.2
+djangorestframework==3.14.0
+drf-yasg==1.21.6
+Pillow==9.5.0
+psycopg2==2.9.6
+psycopg2-binary==2.9.6
+PyJWT==2.7.0
+PyYAML==6.0
+redis==4.5.5
