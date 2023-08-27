@@ -88,7 +88,7 @@ class PostListSerializer(serializers.ModelSerializer):
           "id": obj.sub_category.parent.id,
           "name": obj.sub_category.parent.name,
           "ads_count": obj.sub_category.parent.get_post_count(),
-          "icon": obj.sub_category.parent.icon.url
+          "icon": obj.sub_category.parent.icon_url
         }
       }
 
@@ -97,7 +97,7 @@ class PostListSerializer(serializers.ModelSerializer):
         if obj.images:
             # print(obj.images)
             for image in obj.images.all():
-                photos.append(image.image.url)
+                photos.append(image.photo_url)
         return photos
 
     def get_seller(self, obj):

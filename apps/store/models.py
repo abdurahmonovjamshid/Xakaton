@@ -2,6 +2,8 @@ from django.contrib.auth import get_user_model
 from django.db import models
 from django.utils.text import slugify
 
+from settings import settings
+
 
 class Category(models.Model):
     name = models.CharField(max_length=100)
@@ -12,11 +14,19 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
+    @property
+    def icon_url(self, request=None):
+        if self.icon:
+            domain = settings.DOMAIN_NAME
+            return f"{domain}{self.icon.url}"
+        else:
+            return None
+
     def get_post_count(self):
         total = 0
         if self.children:
             for child in self.children.all():
-                total+=child.post_set.all().count()
+                total += child.post_set.all().count()
         return total
 
 
@@ -49,5 +59,13 @@ class PostImage(models.Model):
         Post, related_name='images', on_delete=models.CASCADE)
     image = models.ImageField(upload_to='posts/')
 
+    @property
+    def photo_url(self, request=None):
+        if self.image:
+            domain = settings.DOMAIN_NAME
+            return f"{domain}{self.image.url}"
+        else:
+            return None
+
     def __str__(self):
-        return str(self.post)
+        return f'image of {self.post}'
