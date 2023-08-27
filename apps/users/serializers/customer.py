@@ -13,7 +13,7 @@ class ProfileSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = Profile
-        fields = ('full_name', 'phone_number', 'profile_photo', 'address')
+        fields = ('full_name', 'phone_number', 'photo_url', 'address')
 
     def get_address(self, obj):
         return obj.get_address()

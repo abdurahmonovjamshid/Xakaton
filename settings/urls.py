@@ -26,7 +26,7 @@ urlpatterns = [
 
     path('api/v1/', include([
         path('swagger/', schema_view.with_ui('swagger', cache_timeout=0)),
-        path('user/', include('users.urls')),
+        path('accounts/', include('users.urls')),
         path('store/', include('store.urls')),
         path('common/', include('core.urls')),
         re_path(r'^media/(?P<path>.*)$', serve, {'document_root': settings.MEDIA_ROOT}),

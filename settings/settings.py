@@ -94,7 +94,7 @@ DATABASES = {
 }
 
 JWT = {
-    "ACCESS_EXPIRATION_TIME": 50,  # MIN
+    "ACCESS_EXPIRATION_TIME": 500,  # MIN
     "REFRESH_EXPIRATION_TIME": 3,  # DAYS
     "user": "id"
 }

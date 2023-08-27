@@ -11,6 +11,8 @@ from django.utils import timezone
 from django.utils.translation import gettext_lazy as _
 from store.models import Category
 
+from settings import settings
+
 
 class Customer(models.Model):
     full_name = models.CharField(max_length=255)
@@ -107,6 +109,14 @@ class Profile(models.Model):
 
     def __str__(self):
         return self.full_name
+
+    @property
+    def photo_url(self, request=None):
+        if self.profile_photo:
+            domain = settings.DOMAIN_NAME
+            return f"{domain}{self.profile_photo.url}"
+        else:
+            return None
 
     def get_address(self):
         lat = None
