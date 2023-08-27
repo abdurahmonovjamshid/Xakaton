@@ -73,7 +73,7 @@ class User(AbstractUser):
             "unique": _("A user with that username already exists."),
         },
     )
-    full_name = models.CharField(max_length=150, blank=True)
+    full_name = models.CharField(max_length=150, blank=False, null=False)
     phone_regex = RegexValidator(regex=r'^\+?1?\d{9,15}$',
                                  message="Phone number must be entered in the format: '+999999999'. Up to 15 digits allowed.")
     # validators should be a list
@@ -87,12 +87,18 @@ class User(AbstractUser):
     class Meta:
         verbose_name = 'User'
 
+    def __str__(self):
+        if self.full_name:
+            return self.full_name
+        return self.username
+
 
 class Profile(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     full_name = models.CharField(max_length=255)
     phone_number = models.CharField(max_length=20)
-    profile_photo = models.ImageField(default='default.jpg', upload_to='accounts/')
+    profile_photo = models.ImageField(
+        default='default.jpg', upload_to='accounts/')
     address_name = models.CharField(max_length=255, null=True, blank=True)
     address_lat = models.DecimalField(
         max_digits=9, decimal_places=6, null=True, blank=True)

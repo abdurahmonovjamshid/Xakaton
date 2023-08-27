@@ -10,7 +10,7 @@ from users.serializers.sign_up import UserSignUpSerializer
 
 
 class CustomerCreateAPIView(APIView):
-    @swagger_auto_schema(request_body=CustomerSerializer, tags=['User'])
+    @swagger_auto_schema(request_body=CustomerSerializer, tags=['accounts'])
     def post(self, request, format=None):
         serializer = CustomerSerializer(data=request.data)
         if serializer.is_valid():
@@ -28,7 +28,7 @@ class ProfileAPIView(APIView):
             200: ProfileSerializer(),
             404: "Profile not found."
         },
-        tags=['User']
+        tags=['accounts']
     )
     def get(self, request, format=None):
         try:

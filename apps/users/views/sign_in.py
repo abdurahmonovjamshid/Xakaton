@@ -13,7 +13,7 @@ class SignInView(APIView):
     permission_classes = (permissions.AllowAny,)
     serializer_class = UserSignInSerializer
 
-    @swagger_auto_schema(request_body=UserSignInSerializer, tags=['User'])
+    @swagger_auto_schema(request_body=UserSignInSerializer, tags=['accounts'])
     def post(self, request):
         username = request.data['username']
         password = request.data['password']

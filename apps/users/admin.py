@@ -42,7 +42,8 @@ class UserAdmin(admin.ModelAdmin):
 
 @admin.register(Profile)
 class ProfileAdmin(admin.ModelAdmin):
-    list_display = ('user', 'full_name', 'phone_number')
+    list_display = ('full_name', 'phone_number', 'address_name')
+    list_filter = ['address_name']
 
     def has_change_permission(self, request, obj=None):
         return False

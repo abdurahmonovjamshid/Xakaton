@@ -12,7 +12,7 @@ class TokenView(APIView):
     permission_classes = (permissions.AllowAny,)
     serializer_class = UserTokenSerializer
 
-    @swagger_auto_schema(request_body=UserTokenSerializer, tags=['User'])
+    @swagger_auto_schema(request_body=UserTokenSerializer, tags=['accounts'])
     def post(self, request):
         refresh = request.data['refresh']
         token = Token.objects.filter(refresh=refresh).first()

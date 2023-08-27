@@ -1,5 +1,6 @@
 from django import forms
 from django.contrib import admin
+from users.models import User
 
 from .models import Category, Post, PostImage
 
@@ -31,6 +32,14 @@ class PostAdmin(admin.ModelAdmin):
     form = PostAdminForm
     inlines = [PostImageInline]
     prepopulated_fields = {'slug': ('name',)}
+    list_display = ['name', 'seller'] 
+    list_filter = ['seller']
+
+    def get_form(self, request, obj=None, **kwargs):
+        form = super().get_form(request, obj, **kwargs)
+        form.base_fields['seller'].initial = request.user.id
+        form.base_fields['seller'].widget = forms.HiddenInput()
+        return form
 
     def save_model(self, request, obj, form, change):
         super().save_model(request, obj, form, change)

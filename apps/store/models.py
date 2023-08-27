@@ -12,6 +12,13 @@ class Category(models.Model):
     def __str__(self):
         return self.name
 
+    def get_post_count(self):
+        total = 0
+        if self.children:
+            for child in self.children.all():
+                total+=child.post_set.all().count()
+        return total
+
 
 class Post(models.Model):
     CURRENCY_CHOICES = [

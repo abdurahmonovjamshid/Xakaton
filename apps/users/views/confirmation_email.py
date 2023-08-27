@@ -11,7 +11,7 @@ class EmailConfirmView(APIView):
     permission_classes = (permissions.AllowAny,)
     serializer_class = ConfirmEmailSerializer
 
-    @swagger_auto_schema(request_body=ConfirmEmailSerializer, tags=['User'])
+    @swagger_auto_schema(request_body=ConfirmEmailSerializer, tags=['accounts'])
     def post(self, request):
         serializer = ConfirmEmailSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
@@ -25,7 +25,7 @@ class EmailConfirmationView(APIView):
     permission_classes = (permissions.AllowAny,)
     serializer_class = EmailSerializer
 
-    @swagger_auto_schema(request_body=EmailSerializer, tags=['User'])
+    @swagger_auto_schema(request_body=EmailSerializer, tags=['accounts'])
     def post(self, request):
         serializer = EmailSerializer(data=request.data)
         serializer.is_valid(raise_exception=True)
